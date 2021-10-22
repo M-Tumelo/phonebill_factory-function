@@ -20,7 +20,7 @@ function radio_bills(){
         call+=2.75;  
     }
     function tottal(){
-return (sms+call).toFixed(2);
+return (sms+call);
     }
 
     function callTotal(){
@@ -49,14 +49,14 @@ radio_button_sms
 const radioBill = radio_bills();
 callsTotalTwoElem.innerHTML = radioBill.callTotal();
 smsTotalTwoElem.innerHTML =  radioBill.smsTotal();
-totalCostTwoElem.innerHTML = 0.00;
+totalCostTwoElem.innerHTML = radioBill.tottal().toFixed(2);
 
 radioBillAddBtn.addEventListener("click", function(){
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     var billItemType = checkedRadioBtn.value
 radioBill.action(billItemType);
 //color the total based on the criteria
-var total =radioBill.tottal();
+var total =radioBill.tottal().toFixed(2);
 if ( total>= 50){
     // adding the danger class will make the text red
     totalCostTwoElem.classList.add("danger");
@@ -66,5 +66,5 @@ if ( total>= 50){
             }
 callsTotalTwoElem.innerHTML = radioBill.callTotal();
 smsTotalTwoElem.innerHTML =  radioBill.smsTotal();
-totalCostTwoElem.innerHTML = radioBill.tottal();
+totalCostTwoElem.innerHTML = radioBill.tottal().toFixed(2);
     });

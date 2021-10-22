@@ -26,7 +26,7 @@ function text_bills(){
         callsTotal+=2.75;  
     }
     function tottal(){
-return (smsTotal+callsTotal).toFixed(2);
+return (smsTotal+callsTotal);
     }
 
     function call_total(){
@@ -55,11 +55,11 @@ text_sms
     const textBills = text_bills();
     callsTotalElem.innerHTML = textBills.call_total();
     smsTotalElem.innerHTML = textBills.sms_total();
-    totalCostElem.innerHTML = 0;
+   // totalCostElem.innerHTML = textBills.sms_total().toFixed(2);
 //add an event listener for when the add button is pressed
 textTotalAddBtn.addEventListener("click",function(){
 textBills.action(billTypeText.value);
-var totalCost = textBills.tottal();
+var totalCost = textBills.tottal().toFixed(2);
 //update the totals that is displayed on the screen.
 callsTotalElem.innerHTML = textBills.call_total();;
     smsTotalElem.innerHTML = textBills.sms_total();

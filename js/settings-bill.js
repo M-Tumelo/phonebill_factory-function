@@ -2,8 +2,8 @@ var call_update=0.00;
 var sms_update=0.00;
 var critical_level= 0.00;
 var warning_level = 0.00;
-var sms_radio = 0;
-var call_radio = 0;
+var sms_radio = Number(0.00);
+var call_radio = Number(0.00);
 function settings_factory_function(){
 function update_call(){
      return parseFloat(document.querySelector(".callCostSetting").value);
@@ -34,7 +34,7 @@ function radio_button(){
         call_radio+=update_settings.update_call();  
     }
     function tottal(){
-return (sms_radio+call_radio).toFixed(2);
+return (sms_radio+call_radio);
     }
 
     function callTotal(){
@@ -72,9 +72,9 @@ const addButton = document.querySelector(".addBtn");
 const updateButton = document.querySelector(".updateSettings");
 
 // create a variables that will keep track of all three totals.
-callsElem.innerHTML = 0.00;
-smsElem.innerHTML = 0.00;
-totalElem.innerHTML =0.00;
+// callsElem.innerHTML = 0.00;
+// smsElem.innerHTML = 0.00;
+// totalElem.innerHTML =0.00;
 var prevTotalBill = 0.00;
 const update_settings = settings_factory_function();
 var criticalLevelSetting=0;
@@ -85,7 +85,6 @@ updateButton.addEventListener("click", function(){
  update_settings.update_sms();
  warningLevelSetting=update_settings.update_warning_level();
 criticalLevelSetting= update_settings.update_critical_level();  
-alert(warningLevelSetting);
 addButton.disabled=false;
 if(parseFloat(prevTotalBill) == parseFloat(criticalLevelSetting)) addButton.disabled=true;
 if(parseFloat(prevTotalBill)<parseFloat(criticalLevelSetting)) totalElem.classList.remove("danger");
@@ -104,7 +103,7 @@ addButton.addEventListener("click", function(){
 //update the totals that is displayed on the screen.
 callsElem.innerHTML = bill_type.callTotal();
 smsElem.innerHTML = bill_type.smsTotal();
-var total = bill_type.tottal();
+var total = bill_type.tottal().toFixed(2);
 totalElem.innerHTML = total;
 prevTotalBill = total;
 //color the total based on the criteria
